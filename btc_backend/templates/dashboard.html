@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="hero-dashboard">
+        <div class="header-dashboard">
+            <h1>Welcome {{username}}!</h1>
+        </div>
+    </div>
+
+    <div class="chatbot-container">
+        <!-- Chatbot button to open the chatbox -->
+        <div id="chatbot-button">Chatbot</div>
+
+        <!-- Chatbox UI -->
+        <div class="chat-box">
+            <div class="chat-box-header">
+                <p>Close Chat</p>
+            </div>
+            <div class="chat-box-body">
+                <!-- Chat content will be displayed here -->
+            </div>
+            <div class="chat-box-footer">
+                <input type="text" id="user-message-input" placeholder="Type a message..." />
+                <button id="send-message-button">Send</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

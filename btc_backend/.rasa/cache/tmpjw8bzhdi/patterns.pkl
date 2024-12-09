@@ -1,0 +1,10 @@
+[
+  {
+    "name": "category",
+    "pattern": "(pension payments|account fees|investment sales|credit card payment|wire transfers|bill payment|gift card purchases|loan interest payments|currency exchange|salary deposits|refund|direct debits|overdraft fees|investment purchases|mobile payments|recurring subscriptions|interest payment|foreign transaction fees|ATM withdrawal|tax payments|reversals/cancellations|fund transfer|check withdrawals|money orders|standing orders|loan disbursement|reward redemptions|deposit|utility payments|merchant payment|dividend payments|check deposits|cash deposits|loan payment|gift|payment|bill|subscription|shopping|dummy|IBFT)"
+  },
+  {
+    "name": "category",
+    "pattern": "(\\bpension\\ payments\\b|\\baccount\\ fees\\b|\\binvestment\\ sales\\b|\\bcredit\\ card\\ payment\\b|\\bwire\\ transfers\\b|\\bbill\\ payment\\b|\\bgift\\ card\\ purchases\\b|\\bloan\\ interest\\ payments\\b|\\bcurrency\\ exchange\\b|\\bsalary\\ deposits\\b|\\brefund\\b|\\bdirect\\ debits\\b|\\boverdraft\\ fees\\b|\\binvestment\\ purchases\\b|\\bmobile\\ payments\\b|\\brecurring\\ subscriptions\\b|\\binterest\\ payment\\b|\\bforeign\\ transaction\\ fees\\b|\\bATM\\ withdrawal\\b|\\btax\\ payments\\b|\\breversals/cancellations\\b|\\bfund\\ transfer\\b|\\bcheck\\ withdrawals\\b|\\bmoney\\ orders\\b|\\bstanding\\ orders\\b|\\bloan\\ disbursement\\b|\\breward\\ redemptions\\b|\\bdeposit\\b|\\butility\\ payments\\b|\\bmerchant\\ payment\\b|\\bdividend\\ payments\\b|\\bcheck\\ deposits\\b|\\bcash\\ deposits\\b|\\bloan\\ payment\\b|\\bdummy\\b|\\bgift\\b|\\bpayment\\b|\\bbill\\b|\\bsubscription\\b|\\bshopping\\b|\\bIBFT\\b)"
+  }
+]

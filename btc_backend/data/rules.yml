@@ -1,0 +1,214 @@
+version: "3.1"
+
+rules:
+  - rule: Handle multiple queries
+    steps:
+      - intent: multiple_queries
+      - action: action_fetch_multiple_details
+      - action: utter_ask_multiple_queries
+
+  - rule: Greet user
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Respond to out of scope queries
+    steps:
+      - intent: out_of_scope
+      - action: utter_default
+
+  - rule: Handle branch info queries
+    steps:
+      - intent: ask_branch_info
+      - action: action_get_branch_info
+
+  - rule: Handle region branch queries
+    steps:
+      - intent: ask_region_branches
+      - action: action_get_branch_info
+
+
+  - rule: Handle multiple branch queries
+    steps:
+      - intent: multiple_branch_queries
+      - action: action_get_branch_info
+
+  - rule: Handle Saturday-open branches
+    steps:
+      - intent: ask_saturday_open_branches
+      - action: action_get_branch_info
+
+  - rule: Handle Sunday-open branches
+    steps:
+      - intent: ask_sunday_open_branches
+      - action: utter_sunday_open
+
+  - rule: Handle Weekday-open branches
+    steps:
+      - intent: ask_weekday_open_branches
+      - action: utter_weekdays_open
+
+  - rule: show transactions
+    steps:
+      - intent: show_transactions
+      - action: action_fetch_transactions
+
+  - rule: Services
+    steps:
+      - intent: services
+      - action: utter_services
+
+  - rule: Activate add payee form
+    steps:
+      - intent: add_payee
+      - action: payee_form
+      - active_loop: payee_form  # Activate the form
+      - action: action_listen
+
+  - rule: Submit add payee form
+    condition:
+      - active_loop: payee_form
+    steps:
+      - action: action_validate_and_add_payee
+      - active_loop: null
+
+
+  - rule: Add/Remove Payee Confirmation
+    condition:
+      - slot_was_set:
+          - confirmation_pending: true
+    steps:
+      - intent: affirm
+      - action: action_validate_and_add_payee
+      - active_loop: null
+
+  - rule: Cancel Payee Operation
+    condition:
+      - slot_was_set:
+          - confirmation_pending: true
+    steps:
+      - intent: deny
+      - action: action_validate_and_add_payee
+      - active_loop: null
+
+
+  - rule: Activate Remove Payee Form
+    steps:
+      - intent: remove_payee
+      - action: remove_payee_form
+      - active_loop: remove_payee_form
+
+  - rule: Submit Remove Payee Form
+    condition:
+      - active_loop: remove_payee_form
+    steps:
+      - action: action_submit_remove_payee
+      - active_loop: null
+
+
+  # Rule to start the transfer form
+  - rule: Activate Transfer Form
+    steps:
+      - intent: transfer  # User initiates transfer
+      - action: transfer_form
+      - active_loop: transfer_form  # Activate the form to collect necessary details
+
+  # Rule to submit the transfer form and generate OTP
+  - rule: Submit Transfer Form
+    condition:
+      - active_loop: transfer_form
+    steps:
+      - action: transfer_form
+      - active_loop: null
+      - action: action_transfer_funds  # Generate OTP and set waiting_for_otp slot
+      - active_loop: null  # Deactivate the form after submission
+
+  # Rule to handle OTP submission after generating it
+  - rule: Handle OTP Submission
+    condition:
+      - slot_was_set:
+          - waiting_for_otp: true  # Ensure we are waiting for OTP input
+    steps:
+      - intent: provide_otp
+      - action: action_transfer_funds  # Validate OTP and perform the transfer
+      - active_loop: null  # Deactivate after OTP validation and transfer completion
+      - slot_was_set:
+          - waiting_for_otp: false
+
+#  # Rule to cancel the transfer operation while waiting for OTP
+#  - rule: Cancel Transfer Operation
+#    condition:
+#      - slot_was_set:
+#          - waiting_for_otp: true  # Ensure we're in the OTP waiting state for transfer
+#    steps:
+#      - intent: deny  # User cancels the transfer operation
+#      - action: action_transfer_funds  # Deactivate the loop
+#      - active_loop: null
+#      - slot_was_set:
+#          - waiting_for_otp: false  # Reset waiting state after cancellation
+
+  - rule: Show Payees Rule
+    steps:
+      - intent: show_payees
+      - action: action_show_payees
+
+  - rule: Handle Complaints Query
+    steps:
+      - intent: check_complaints  # Triggered when the user asks about complaints
+      - action: action_check_complaints  # Execute the action to get complaint details
+
+  - rule: Activate Complaint Form
+    steps:
+      - intent: register_complaint
+      - action: complaint_form
+      - active_loop: complaint_form  # Activate the form
+      - action: action_listen
+
+  - rule: Submit Complaint Form
+    condition:
+      - active_loop: complaint_form
+    steps:
+      - action: action_register_complaint  # Register complaint using the action
+      - action: action_deactivate_loop
+      - active_loop: null  # Deactivate the form after submission
+
+  - rule: Activate Add Bill Form
+    steps:
+      - intent: add_bill
+      - action: add_bill_form
+      - active_loop: add_bill_form
+
+  # Rule to submit the add bill form and confirm addition
+  - rule: Submit and Confirm Add Bill Form
+    condition:
+      - active_loop: add_bill_form
+    steps:
+      - action: add_bill_form
+      - active_loop: null
+      - action: action_add_bill  # Verify the bill and prompt the user for confirmation
+      - slot_was_set:
+          - bill_confirmation_pending: true
+      - intent: affirm
+      - action: action_validate_and_add_user_bill
+      - active_loop: null
+
+  # Rule to activate the Pay Bill form
+  - rule: Activate Pay Bill Form
+    steps:
+      - intent: pay_bill
+      - action: pay_bill_form
+      - active_loop: pay_bill_form
+
+  # Rule to handle the Pay Bill form submission and confirmation
+  - rule: Submit and Confirm Pay Bill Form
+    condition:
+      - active_loop: pay_bill_form
+    steps:
+      - action: pay_bill_form
+      - active_loop: null
+      - action: action_fetch_bill_details  # Display bill details to user
+      - slot_was_set:
+          - waiting_for_bill_payment_confirmation: true
+      - intent: affirm
+      - action: action_pay_bill  # Proceed with bill payment
+      - active_loop: null  # Explicitly deactivate the form loop

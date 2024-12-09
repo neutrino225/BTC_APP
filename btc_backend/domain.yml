@@ -1,0 +1,485 @@
+version: '3.1'
+intents:
+- add_payee
+- affirm
+- ask_branch_info
+- ask_region_branches
+- ask_saturday_open_branches
+- confirm_transfer
+- deny
+- greet
+- multiple_branch_queries
+- multiple_queries
+- out_of_scope
+- provide_otp
+- remove_payee
+- show_transactions
+- transfer
+- services
+- show_payees
+- check_complaints
+- register_complaint
+- add_bill
+- pay_bill
+- ask_sunday_open_branches
+- ask_weekday_open_branches
+
+entities:
+- transfer_amount
+- to_account
+- num_transactions
+- time
+- category
+- iban
+- bank_name
+- payee_account_number
+- payee_name
+- cnic
+- account_number
+- account_title
+- customer_name
+- contact_number
+- email
+- ntn
+- cif
+- account_type_name
+- account_type_code
+- outstanding_balance
+- date_of_birth
+- address
+- nationality
+- city_residential
+- registration_number
+- father_name
+- reward_points
+- branch_name
+- column
+- region
+- sat_open
+- otp
+- complaint_description
+- main_category
+- sub_category
+- bill_id
+- bill_nickname
+- bill_identifier
+slots:
+  cnic:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: cnic
+  account_number:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: account_number
+  account_title:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: account_title
+  customer_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: customer_name
+  contact_number:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: contact_number
+  email:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: email
+  ntn:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ntn
+  cif:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: cif
+  account_type_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: account_type_name
+  account_type_code:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: account_type_code
+  outstanding_balance:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: outstanding_balance
+  date_of_birth:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: date_of_birth
+  address:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: address
+  nationality:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: nationality
+  city_residential:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: city_residential
+  registration_number:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: registration_number
+  father_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: father_name
+  reward_points:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: reward_points
+  branch_name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: branch_name
+  column:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: column
+  region:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: region
+  sat_open:
+    type: bool
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: sat_open
+  payee_account_number:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: payee_account_number
+    - type: from_text
+      conditions:
+      - active_loop: payee_form
+        requested_slot: payee_account_number
+      - active_loop: remove_payee_form
+        requested_slot: payee_account_number
+  iban:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: iban
+    - type: from_text
+  bank_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: bank_name
+    - type: from_text
+      conditions:
+      - active_loop: payee_form
+        requested_slot: bank_name
+  payee_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: payee_name
+    - type: from_text
+      conditions:
+      - active_loop: payee_form
+        requested_slot: payee_name
+  confirmation_pending:
+    type: bool
+    initial_value: false
+    influence_conversation: false
+    mappings:
+    - type: custom
+  category:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: category
+  num_transactions:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: num_transactions
+  to_account:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: to_account
+    - type: from_text
+      conditions:
+      - active_loop: transfer_form
+        requested_slot: to_account
+  transfer_amount:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: transfer_amount
+    - type: from_text
+      conditions:
+      - active_loop: transfer_form
+        requested_slot: transfer_amount
+  otp:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: otp
+  waiting_for_otp:
+    type: bool
+    initial_value: false
+    influence_conversation: false
+    mappings:
+    - type: custom
+  complaint_description:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: complaint_form
+            requested_slot: complaint_description
+
+  main_category:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_bill_form
+            requested_slot: main_category
+
+  sub_category:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_bill_form
+            requested_slot: sub_category
+
+  bill_id:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_bill_form
+            requested_slot: bill_id
+
+  bill_nickname:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_bill_form
+            requested_slot: bill_nickname
+  bill_identifier:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: pay_bill_form
+            requested_slot: bill_identifier
+
+  bill_confirmation_pending:
+    type: bool
+    initial_value: false
+    influence_conversation: false
+    mappings:
+      - type: custom
+  waiting_for_bill_payment_confirmation:
+    type: bool
+    initial_value: false
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  bill_amount:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+actions:
+- action_fetch_transactions
+- action_transfer_funds
+- action_validate_and_add_payee
+- action_fetch_multiple_details
+- action_get_branch_info
+- action_submit_remove_payee
+- action_show_payees
+- action_check_complaints
+- action_register_complaint
+- action_add_bill
+- action_validate_and_add_user_bill
+- action_pay_bill
+- action_fetch_bill_details
+forms:
+  payee_form:
+    required_slots:
+    - iban
+    - payee_account_number
+    - bank_name
+    - payee_name
+  remove_payee_form:
+    required_slots:
+    - payee_account_number
+  transfer_form:
+    required_slots:
+    - to_account
+    - transfer_amount
+  complaint_form:
+    required_slots:
+      - complaint_description
+  add_bill_form:
+    required_slots:
+      - main_category
+      - sub_category
+      - bill_id
+      - bill_nickname
+
+  pay_bill_form:
+    required_slots:
+      - bill_identifier
+responses:
+  utter_greet:
+  - text: Hello! How can I assist you today?
+  utter_ask_multiple_queries:
+  - text: What other details would you like to know?
+  utter_default:
+  - text: Sorry, I don't understand, can you please rephrase?
+  utter_ask_iban:
+  - text: Please provide the IBAN. (If you don't have one, we'll ask for account number and bank name next.)
+  utter_ask_payee_account_number:
+  - text: Please provide the payee's account number.
+  utter_ask_bank_name:
+  - text: Please provide the bank name.
+  utter_ask_payee_name:
+  - text: Please provide the payee's nickname.
+  utter_payee_exists:
+  - text: 'The payee already exists: {payee_name}, Account Number: {payee_account_number}, Bank: {bank_name}, Branch: {branch_name}'
+  utter_payee_added:
+  - text: Payee {payee_name} has been successfully added.
+  utter_ask_to_account:
+  - text: Please provide the recipient's account number or nickname.
+  utter_ask_transfer_amount:
+  - text: How much do you want to transfer?
+  utter_ask_otp:
+  - text: Please enter the OTP you received.
+  utter_sunday_open:
+  - text: All branches are closed on Sunday.
+  utter_weekdays_open:
+  - text: All branches are open on Weekdays.
+  utter_ask_complaint_description:
+  - text: "Please describe the issue you are facing so we can register your complaint."
+  utter_ask_main_category:
+  - text: "Which bill category would you like to add? For example, Electricity, Gas, Water, etc."
+
+  utter_ask_sub_category:
+  - text: "Which provider do you want to add? Please specify the sub-category, like IESCO, SNGPL, etc."
+
+  utter_ask_bill_id:
+  - text: "Please provide the Bill ID for verification."
+
+  utter_ask_bill_nickname:
+  - text: "What nickname would you like to use for this bill? (e.g., 'myelectricbill')"
+  utter_ask_bill_identifier:
+  - text: "Which bill would you like to pay? You can provide either the nickname or the bill ID."
+  utter_ask_bill_payment_confirmation:
+  - text: "The bill amount is {bill_amount}. Would you like to proceed with paying the bill with ID {bill_id}?"
+  utter_payment_cancelled:
+  - text: "Your payment for bill ID {bill_id} has been cancelled."
+
+  utter_services:
+  - text: >
+      At BTC Conversa, we provide a broad spectrum of banking services to cater to all your financial needs, ensuring you have a seamless and intuitive experience. Here are some key services we offer:
+      <br>
+      <strong>1. Personal and Account Information:</strong><br>
+      - View account balance for savings, checking, and other accounts.<br>
+      - Check your rewards points balance.<br>
+      - Access credit/debit card details like current balance, credit limits, and due dates.<br><br>
+
+      <strong>2. Transaction History:</strong><br>
+      - Retrieve your transaction history, including the last N transactions or by date range.<br>
+      - Get categorized insights into your transactions, such as groceries or entertainment spending.<br><br>
+
+      <strong>3. Account Management:</strong><br>
+      - Add new payees, request account statements, and cheque books.<br>
+      - Update your contact information or apply for new banking services.<br><br>
+
+      <strong>4. Funds Transfer & Bill Payments:</strong><br>
+      - Transfer money to your contacts or pay utility bills effortlessly.<br>
+      - Buy prepaid/postpaid mobile bundles and set up recurring payments.<br><br>
+
+      <strong>5. Card Services:</strong><br>
+      - Enable/disable debit or credit cards temporarily or permanently.<br>
+      - Report lost or stolen cards, or request a limit increase.<br><br>
+
+      <strong>6. Loan and Investment Services:</strong><br>
+      - Apply for a loan, make loan payments, or explore investment options like buying or selling stocks and mutual funds.<br><br>
+
+      <strong>7. Alerts and Notifications:</strong><br>
+      - Set up notifications for low balance, bill due dates, missed payments, and expiring offers.<br>
+      - Receive alerts via email or mobile to stay updated.<br><br>
+
+      <strong>8. Customer Support:</strong><br>
+      - Track the status of raised complaints or requests.<br>
+      - Access FAQs, connect with your relationship manager, or contact our fraud hotline.<br><br>
+
+      <strong>9. Bank and Branch Information:</strong><br>
+      - Find the nearest branch or ATM, view Saturday open branches, and check branch working hours.<br>
+      - Get information on promotions, active offers, and location-based deals.<br><br>
+
+      <strong>10. Expenditure and Transaction Analysis:</strong><br>
+      - Analyze your expenditure by merchant categories.<br>
+      - View transaction trends, receive alerts for unusual transactions, and track monthly spending limits.<br><br>
+
+      <strong>11. Security and Alerts:</strong><br>
+      - Manage security alerts for account activity, change/reset your PIN, and adjust your user preferences like language settings.<br><br>
+
+      <strong>12. Personalized Assistance:</strong><br>
+      - Book appointments at branches, schedule calls, raise disputes, or provide feedback for our services.<br><br>
+
+      If you need more details on any of these services or assistance to get started, feel free to ask!
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

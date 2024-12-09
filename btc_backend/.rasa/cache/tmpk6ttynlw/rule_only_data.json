@@ -1,0 +1,11 @@
+{
+  "rule_only_slots": [],
+  "rule_only_loops": [
+    "remove_payee_form",
+    "pay_bill_form",
+    "add_bill_form",
+    "payee_form",
+    "complaint_form",
+    "transfer_form"
+  ]
+}

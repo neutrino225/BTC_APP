@@ -1,0 +1,212 @@
+/* General styling for body and html */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ================= HOME & DASHBOARD PAGE STYLES ================= */
+
+/* Specific styling for home and dashboard hero sections */
+.hero-home, .hero-dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-image: url('../images/bg.jpg'); /* Ensure this path is correct */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;  /* White text color for better readability on bg */
+}
+
+/* Header for home and dashboard */
+.header-home, .header-dashboard {
+    background: rgba(0, 0, 0, 0.6); /* Transparent black background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+}
+
+/* Button styling for home and dashboard */
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 15px 30px;
+    margin: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* ================= LOGIN & SIGNUP PAGE STYLES ================= */
+
+/* Styling for the login and signup containers */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-image: url('../images/bg.jpg'); /* Background image path */
+    background-size: cover;
+    background-position: center;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.8); /* White background with slight transparency */
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px; /* Max width for the form */
+    text-align: center;
+}
+
+/* Form inputs and buttons */
+input[type="text"], input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* ================= CHATBOT STYLES ================= */
+
+.chatbot-container {
+    position: relative; /* Isolated positioning for the chatbot */
+}
+
+/* Chatbox button - fixed at the bottom right corner */
+#chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+#chatbot-button:hover {
+    background-color: #0056b3;
+}
+
+/* Chatbox container */
+.chat-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 16px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+/* Chatbox header */
+.chat-box-header {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Chatbox body - scrollable area for chat content */
+.chat-box-body {
+    padding: 10px;
+    height: 350px;
+    overflow-y: auto;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Chatbox footer - typing area */
+.chat-box-footer {
+    display: flex;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 0 0 10px 10px;
+    align-items: center;
+}
+
+/* Input field for typing messages */
+#user-message-input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Send button */
+#send-message-button {
+    width: 20%;
+    background-color: #007BFF;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-top 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#send-message-button:hover {
+    background-color: #0056b3;
+}
+
+/* Scrollable chat messages */
+.chat-box-body p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Message styling for user and bot */
+.chat-box-body p strong {
+    font-weight: bold;
+}

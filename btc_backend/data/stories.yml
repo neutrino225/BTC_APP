@@ -1,0 +1,191 @@
+version: "3.1"
+
+stories:
+  - story: User greets the bot
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - story: User asks for multiple details
+    steps:
+      - intent: multiple_queries
+      - action: action_fetch_multiple_details
+      - action: utter_ask_multiple_queries
+
+  - story: User asks for branch contact number
+    steps:
+      - intent: ask_branch_info
+        entities:
+          - branch_name: "arifwala"
+          - column: "contact"
+      - action: action_get_branch_info
+      - slot_was_set:
+          - branch_name: null
+
+
+  - story: User asks for branches in a region
+    steps:
+      - intent: ask_region_branches
+        entities:
+          - region: "Islamabad"
+      - action: action_get_branch_info
+      - slot_was_set:
+          - region: null
+
+  - story: User asks for Saturday-open branches
+    steps:
+        - intent: ask_saturday_open_branches
+          entities:
+            - sat_open: true
+        - action: action_get_branch_info
+        - slot_was_set:
+            - sat_open: null
+
+  - story: User asks for multiple branch details
+    steps:
+      - intent: multiple_branch_queries
+        entities:
+          - branch_name: "arifwala"
+          - column: "address"
+          - column: "contact"
+      - action: action_get_branch_info
+      - slot_was_set:
+          - branch_name: null
+          - column: null
+
+  - story: Add a payee with form
+    steps:
+      - intent: add_payee
+      - action: payee_form
+      - active_loop: payee_form
+
+      # Once the form is filled, deactivate it
+      - active_loop: null
+      - slot_was_set:
+          - confirmation_pending: false
+      - action: action_validate_and_add_payee
+
+  - story: Remove a payee
+    steps:
+      - intent: remove_payee
+      - action: remove_payee_form
+      - active_loop: remove_payee_form
+      - active_loop: null
+      - action: action_submit_remove_payee
+
+  - story: user asks for transactions
+    steps:
+      - intent: show_transactions
+      - action: action_fetch_transactions
+
+  - story: interactive_story_1
+    steps:
+      - intent: show_transactions
+        entities:
+          - num_transactions: '2'
+      - slot_was_set:
+          - num_transactions: '2'
+      - action: action_fetch_transactions
+
+  - story: Transfer Funds with Form
+    steps:
+      - intent: transfer  # User initiates transfer
+      - action: transfer_form  # Form is activated
+      - active_loop: transfer_form
+
+      # Once the form is filled, deactivate it
+      - active_loop: null
+      - slot_was_set:
+          - waiting_for_otp: true  # OTP waiting state is set
+      - action: action_transfer_funds  # First action call to generate OTP
+
+  - story: Register a Complaint
+    steps:
+      - intent: register_complaint  # User initiates the complaint registration process
+      - action: complaint_form  # Bot starts the complaint form
+      - active_loop: complaint_form  # Activates the complaint form
+      - slot_was_set:
+          - complaint_description: "My mobile app is too slow"
+      - active_loop: null  # Deactivate the form once the description is collected
+      - action: action_register_complaint  # Register the complaint
+
+  - story: User Adds a Bill
+    steps:
+      - intent: add_bill  # User initiates the process to add a bill
+      - action: add_bill_form  # Activate the add bill form
+      - active_loop: add_bill_form
+      - slot_was_set:
+          - main_category: "Electricity"
+          - sub_category: "IESCO"
+          - bill_id: "12345678"
+          - bill_nickname: "myelectricbill"
+      - active_loop: null  # Deactivate the form after collecting all details
+      - action: action_add_bill  # Verify the bill and prompt for confirmation
+      - slot_was_set:
+          - bill_confirmation_pending: true
+      - intent: affirm  # User confirms to add the bill
+      - action: action_validate_and_add_user_bill  # Add the bill to user's account
+      - active_loop: null  # Deactivate the loop after confirmation
+
+  # Story for paying a bill
+  - story: User Pays a Bill
+    steps:
+      - intent: pay_bill  # User initiates the process to pay a bill
+      - action: pay_bill_form  # Activate the pay bill form
+      - active_loop: pay_bill_form
+      - slot_was_set:
+          - bill_identifier: "myelectricbill"
+      - active_loop: null  # Deactivate the form after collecting the bill identifier
+      - action: action_fetch_bill_details  # Verify bill details and prompt for payment confirmation
+      - slot_was_set:
+          - waiting_for_bill_payment_confirmation: true
+      - intent: affirm  # User confirms to pay the bill
+      - action: action_pay_bill  # Process the payment
+      - active_loop: null  # Deactivate the loop after payment confirmation
+
+  # Story for adding a bill and then paying it
+  - story: User Adds and Pays a Bill
+    steps:
+      - intent: add_bill
+      - action: add_bill_form
+      - active_loop: add_bill_form
+      - slot_was_set:
+          - main_category: "Electricity"
+          - sub_category: "IESCO"
+          - bill_id: "12345678"
+          - bill_nickname: "myelectricbill"
+      - active_loop: null
+      - action: action_add_bill
+      - slot_was_set:
+          - bill_confirmation_pending: true
+      - intent: affirm
+      - action: action_validate_and_add_user_bill
+      - active_loop: null
+      - intent: pay_bill
+      - action: pay_bill_form
+      - active_loop: pay_bill_form
+      - slot_was_set:
+          - bill_identifier: "myelectricbill"
+      - active_loop: null
+      - action: action_fetch_bill_details
+      - slot_was_set:
+          - waiting_for_bill_payment_confirmation: true
+      - intent: affirm
+      - action: action_pay_bill
+      - active_loop: null
+
+
+
+
+#  - story: interactive_story_1
+#    steps:
+#    - intent: show_transactions
+#      entities:
+#      - time:
+#          to: '2024-01-02T00:00:00.000-08:00'
+#          from: '2023-01-01T00:00:00.000-08:00'
+#    - action: action_fetch_transactions
+#    - slot_was_set:
+#      - num_transactions: null
+#    - slot_was_set:
+#      - category: null

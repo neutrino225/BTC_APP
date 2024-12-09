@@ -1,0 +1,481 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - Hello
+    - Hi
+    - Hey
+    - Good morning
+    - Hi there
+    - hi
+    - bye
+- intent: multiple_queries
+  examples: |
+    - what is my [email](email)?
+    - what is my [balance](outstanding_balance)?
+    - what is my [cnic](cnic)?
+    - what is my [account number](account_number)?
+    - what is my [account title](account_title)?
+    - what is my [customer name](customer_name)?
+    - what is my [contact number](contact_number)?
+    - what is my [ntn](ntn)?
+    - what is my [cif](cif)?
+    - what is my [account type name](account_type_name)?
+    - what is my [account type code](account_type_code)?
+    - what is my [date of birth](date_of_birth)?
+    - what is my [address](address)?
+    - what is my [nationality](nationality)?
+    - what is my [city of residence](city_residential)?
+    - what is my [registration number](registration_number)?
+    - what is my [father's name](father_name)?
+    - what are my [reward points](reward_points)?
+    - I want to know my [account number](account_number)
+    - Can you tell me my [date of birth](date_of_birth)?
+    - Please give me my [balance](outstanding_balance)
+    - I need my [address](address)
+    - what is my [email](email) and [balance](outstanding_balance)?
+    - can you tell me my [account number](account_number) and [father's name](father_name)?
+    - I'd like to know my [balance](outstanding_balance) and [contact number](contact_number)?
+    - what is my [email](email) and [account type name](account_type_name)?
+    - show me my [address](address) and [registration number](registration_number)
+    - can you fetch my [email](email) and [reward points](reward_points)?
+    - what is my [customer name](customer_name) and [account type code](account_type_code)?
+    - what are my [cnic](cnic) and [father's name](father_name)?
+    - what is my [email](email), [balance](outstanding_balance), and [ntn](ntn)?
+    - what is my [account number](account_number), [customer name](customer_name), and [account title](account_title)?
+    - I'd like to know my [account type code](account_type_code), [nationality](nationality), and [reward points](reward_points)
+    - show me my [date of birth](date_of_birth), [father's name](father_name), and [account title](account_title)
+    - Can I get my [balance](outstanding_balance), [account number](account_number), and [email](email)?
+    - Please provide my [contact number](contact_number), [address](address), and [cif](cif)
+    - what is my [email](email), [balance](outstanding_balance), [account type name](account_type_name), and [address](address)?
+    - what is my [ntn](ntn), [account number](account_number), [contact number](contact_number), and [date of birth](date_of_birth)?
+    - can you tell me my [cnic](cnic), [balance](outstanding_balance), [account number](account_number), and [father's name](father_name)?
+    - I'd like to know my [email](email), [reward points](reward_points), [nationality](nationality), and [contact number](contact_number)
+    - show me my [customer name](customer_name), [account type name](account_type_name), [address](address), and [account title](account_title)
+    - Tell me my [email](email), [balance](outstanding_balance), [account type code](account_type_code), [nationality](nationality), and [reward points](reward_points)
+    - Give me my [cif](cif), [account number](account_number), [father's name](father_name), [ntn](ntn), and [address](address)
+    - Can I have my [balance](outstanding_balance), [email](email), [customer name](customer_name), [contact number](contact_number), and [date of birth](date_of_birth)?
+    - Provide my [account title](account_title), [city of residence](city_residential), [reward points](reward_points), [registration number](registration_number), and [nationality](nationality)
+    - Give me my [balance](outstanding_balance), [account type name](account_type_name), [email](email), [contact number](contact_number), [reward points](reward_points), and [father's name](father_name)
+    - I need my [account number](account_number), [address](address), [cif](cif), [account type code](account_type_code), [ntn](ntn), and [date of birth](date_of_birth)
+    - What is my [cnic](cnic), [account number](account_number), [account title](account_title), [customer name](customer_name), [contact number](contact_number), [email](email), [ntn](ntn), [cif](cif), [account type name](account_type_name), [account type code](account_type_code), [balance](outstanding_balance), [date of birth](date_of_birth), [address](address), [nationality](nationality), [city of residence](city_residential), [registration number](registration_number), [father's name](father_name), and [reward points](reward_points)?
+    - I'd like to know my [cnic](cnic), [balance](outstanding_balance), [account number](account_number), [email](email), [reward points](reward_points), [date of birth](date_of_birth), and [father's name](father_name)
+    - curent [balnce](outstanding_balance)
+    - act [bal](outstanding_balance)
+    - [balance](outstanding_balance)?
+    - choking act [bal](outstanding_balance)
+    - [bal](outstanding_balance) plz
+    - how much money in my [account](outstanding_balance)?
+    - how much [rewards](reward_points) availabe in my account?
+    - how much [bonus](reward_points) in my account?
+    - my [pts](reward_points)
+    - my [point](reward_points)
+    - [poits](reward_points)
+    - [rewad piont](reward_points)
+    - how much [bal points](outstanding_balance) do I have?
+    - shw my [account number](account_number)
+    - show my [chic](cnic) and [mobile](contact_number)
+    - shoe my [ntn](ntn), [cif](cif)
+    - what is my [balnce](outstanding_balance)?
+    - tell me [balnce](outstanding_balance) in my saving acount
+    - i want my [acount type](account_type_name)
+    - show my [rewardd points](reward_points)
+    - do i have enugh [bal](outstanding_balance) to perform transaction?
+    - my [ntn](ntn) & [cif](cif)
+    - please give me my [conact number](contact_number)
+    - how much i have in my [account](outstanding_balance)
+    - how much [balance](outstanding_balance) is availble in my [acount](account_number)
+    - [cnic](cnic) & [mobile number](contact_number)?
+    - [cnic](cnic) and [balnce](outstanding_balance)
+    - what is my [date of bith](date_of_birth) and [balnce](outstanding_balance)?
+    - show me my [account type](account_type_name)?
+    - [cn](cnic) u fetch my [cnic](cnic) & [balnce](outstanding_balance)?
+    - I'd like to know my [cnic](cnic) & [balnce](outstanding_balance)
+    - plz give me my [acount](account_number) details
+    - what is my [bal](outstanding_balance)?
+    - cn you tel me my [balnce](outstanding_balance) and [cnic](cnic)?
+    - what is my [cnic](cnic), [account type code](account_type_code), and [conact number](contact_number)?
+    - tell me [bal points](reward_points) in my [account](account_number)
+    - [reward pionts](reward_points)?
+    - shw me [reward details](reward_points)
+    - what is my [ntn](ntn), [reward points](reward_points), and [father's name](father_name)?
+    - please provide my [balance](outstanding_balance), [cnic](cnic), and [reward pts](reward_points)
+    - [account balance](outstanding_balance) plz
+    - do i have [enough money](outstanding_balance) to perform transaction
+    - my [dob](date_of_birth)?
+    - What is my [mail](email)?
+    - What is my [name](customer_name)?
+    - Tell me my [birthday](date_of_birth)
+    - What is my [id card](cnic) number?
+- intent: out_of_scope
+  examples: |
+    - Can you play a song?
+    - What is the weather like?
+    - Tell me a joke
+    - How tall is Mount Everest?
+    - What's your favorite color?
+- intent: ask_branch_info
+  examples: |
+    - What are the details for [arifwala](branch_name) branch?
+    - What is the info for [kaghan](branch_name) branch?
+    - Tell me the [contact number](column) for [pine view road](branch_name) branch.
+    - What is the [timings](column) for the [Arifwala](branch_name) branch?
+    - Provide the [address](column) of [arifwala](branch_name) branch.
+    - Can you tell me about the [arifwala](branch_name) branch?
+    - Give me details about the [Islamabad](branch_name) branch.
+    - What is the [address](column) of [Gulberg](branch_name) branch?
+    - How can I contact the [Faisal Town](branch_name) branch?
+    - What is the [contact](column) number for [arifwala](branch_name) branch?
+    - Can you tell me the [timings](column) for [pine view road](branch_name) branch?
+    - What's the [address](column) of the [margalla town](branch_name) branch?
+    - Provide the [type](column) for [arifwala](branch_name) branch.
+- intent: ask_region_branches
+  examples: |
+    - List all branches in [Islamabad](region)
+    - Can you show branches located in [Lahore](region)?
+    - Show me branches in [Abbottabad](region)
+    - Are there any branches in [Rawalpindi](region)?
+    - Can I see branches located in [Karachi](region)?
+    - What branches are in the [Peshawar](region) area?
+    - Do you have any branches in [Quetta](region)?
+    - Can you show me branches in [Islamabad](region)?
+    - List all branches in [Rawalpindi](region)
+    - What branches are available in [Lahore](region)?
+- intent: ask_saturday_open_branches
+  examples: |
+    - Which branches are open on [Saturday](sat_open)?
+    - Show me Saturday open branches
+    - Are there any branches open on [Saturday](sat_open) in [Islamabad](region)?
+- intent: multiple_branch_queries
+  examples: |
+    - What is the [address](column) and [contact](column) of the [arifwala](branch_name) branch?
+    - Provide the [timings](column) and [type](column) for the [Faisal Town](branch_name) branch
+    - What is the [address](column), [contact](column), and [timings](column) of [Gulberg](branch_name) branch?
+- intent: add_payee
+  examples: |
+    - I want to add a payee
+    - I want to add a payee with name [Ali](payee_name)
+    - I want to [Ali](payee_name) as a payee
+    - Please register a new payee
+    - Add a payee to [Allied Bank](bank_name)
+    - Add payee with account number [1234567](payee_account_number)
+    - Add payee with IBAN [PK46BAFL123456789012345678](iban)
+    - Register payee with IBAN [PK10UNBL987654321098765432](iban) in [United Bank Limited](bank_name)
+    - Add payee with account [9876543](payee_account_number) in [Meezan Bank](bank_name)
+    - I'd like to add payee with account [11112222](payee_account_number)
+    - Add a payee to [Habib Bank Limited](bank_name)
+    - I want to add a payee with account number [2104838425](payee_account_number) and bank name [Allied](bank_name) and nickname [Arsi](nickname)
+    - Please add a new payee named [Ali](nickname) with account number [123456789](payee_account_number) at [HBL](bank_name)
+    - Add a payee for me: [Mohsin](nickname), account number [987654321](payee_account_number), bank [UBL](bank_name)
+    - I want to add [Sara](nickname) as a payee with account number [111223344](payee_account_number) and bank [National Bank](bank_name)
+    - Add payee with account number [987654321](payee_account_number), bank [Meezan](bank_name), nickname [Ahmad](nickname)
+    - I want to add payee with account number [2104838425](payee_account_number)
+    - Please add new payee with bank [HBL](bank_name)
+    - Add a payee named [Arslan](nickname)
+    - I want to add payee [123456](payee_account_number) with nickname [Zeeshan](nickname)
+    - Add [Faraz](nickname) as payee in bank [UBL](bank_name)
+    - I want to ad paye [2104838425](payee_account_number) and [Allied](bank_name)
+    - Please add payye with [123456789](payee_account_number) at [UBL](bank_name)
+    - Add pyee named [Ali](nickname)
+    - Add new peyee with account no [0987654321](payee_account_number) bank [HABIB](bank_name)
+    - I need to add a peye with nick [Faisal](nickname)
+- intent: remove_payee
+  examples: |
+    - I want to remove a payee
+    - Delete a payee
+    - Remove payee with account number [1234567](payee_account_number)
+    - Remove payee with account [3059843124](payee_account_number)
+    - Delete payee with account number [9876543](payee_account_number)
+- intent: affirm
+  examples: |
+    - Yes
+    - Sure
+    - Please proceed
+    - Go ahead
+- intent: deny
+  examples: |
+    - No
+    - Stop
+    - Cancel
+    - Don't proceed
+- intent: show_transactions
+  examples: |
+    - Show me all of my previous transactions
+    - I want to see my transaction history
+    - Show me my transactions
+    - Retrieve all my transactions
+    - Get my last transactions
+    - Please show me my previous transactions
+    - Display my transaction details
+    - Fetch my last ten transactions
+    - What are my transactions for this month?
+    - Show me transactions between [2024-01-01](start_date) and [2024-01-31](end_date)
+    - I want to see transactions from [March 1st](start_date) to [March 31st](end_date)
+    - I need to check my recent transactions
+    - List all my transactions
+    - Show me the last [5](num_transactions) transactions
+    - Can I see my last [10](num_transactions) transactions?
+    - Please show me the last [20](num_transactions) transactions
+    - Get my last [15](num_transactions) transactions
+    - I want to see the last [30](num_transactions) transactions
+    - Show me the last [3](num_transactions) transactions
+    - Show me my last [2](num_transactions) transactions
+    - Show me transactions from 1/1/23 to 1/1/24
+    - Show me the transactions from last week
+    - Show me the transactions of last month
+    - Show my transactions between 01/10/2023 and 10/10/2023
+    - Can I see the transactions for last month?
+    - Show transactions from November 1st, 2023 to November 10th, 2023
+    - Show my transactions from [yesterday](time)
+    - List all transactions between [January 1st](time) and [January 15th](time)
+    - I need transactions from [2023-01-01](time) to [2023-12-31](time)
+    - Show me the latest [1](num_transactions) transaction
+    - Show me transactions for [shopping](category)
+    - Fetch my [wire transfers](category)
+    - Show transactions for [salary deposits](category)
+    - Get transactions for [mobile payments](category) from [last month](time)
+    - Show transactions between [1st September](time) and [5th September](time) for [utility payments](category)
+    - give me my transactions from 01/01/2023 to 01/01/2024
+    - Show me all of my previous transactions
+    - I want to see my transaction history
+    - Show me my transactions
+    - Retrieve all my transactions
+    - Get my last transactions
+    - Please show me my previous transactions
+    - Display my transaction details
+    - Fetch my last ten transactions
+    - What are my transactions for this month?
+    - Show me transactions between [2024-01-01](start_date) and [2024-01-31](end_date)
+    - I want to see transactions from [March 1st](start_date) to [March 31st](end_date)
+    - I need to check my recent transactions
+    - List all my transactions
+    - Show me the last [5](num_transactions) transactions
+    - Can I see my last [10](num_transactions) transactions?
+    - Please show me the last [20](num_transactions) transactions
+    - Get my last [15](num_transactions) transactions
+    - I want to see the last [30](num_transactions) transactions
+    - Show me the last [3](num_transactions) transactions
+    - Show me my last [2](num_transactions) transactions
+    - Show me transactions from [1/1/23](start_date) to [1/1/24](end_date)
+    - Show me the transactions from last week
+    - Show me the transactions of last month
+    - Show me my last 6 month transactions
+    - Show me my last 2 year transactions
+    - Show my transactions between [01/10/2023](start_date) and [10/10/2023](end_date)
+    - Can I see the transactions for last month?
+    - Show transactions from [November 1st, 2023](start_date) to [November 10th, 2023](end_date)
+    - Show my transactions from [yesterday](time)
+    - List all transactions between [January 1st](start_date) and [January 15th](end_date)
+    - I need transactions from [2023-01-01](start_date) to [2023-12-31](end_date)
+    - Show me the latest [1](num_transactions) transaction
+    - Show me transactions for [shopping](category)
+    - Fetch my [wire transfers](category)
+    - Show transactions for [salary deposits](category)
+    - Get transactions for [mobile payments](category) from [last month](time)
+    - Show transactions between [1st September](start_date) and [5th September](end_date) for [utility payments](category)
+    - Give me my transactions from [01/01/2023](start_date) to [01/01/2024](end_date)
+    - Transactions from [2023 to 2024](time)
+    - Show my transactions from [Aug 1st 2023](start_date) to [Oct 15 2024](end_date)
+    - Transactions from [Sep 1st 2023](start_date) to [Oct 15 2023](end_date)
+    - Show me the transactions of [2023](time)
+    - Get transactions between [Jan 1 2023](start_date) and [30.12.2023](end_date)
+    - Show me my [subscription](category) transactions
+    - Show transactions from [Nov 1st](start_date) to [Nov 10th](end_date) for [account fees](category)
+    - Transactions between [Feb 2024](start_date) and [Sep 2024](end_date)
+    - Show me my [incoming](transaction_type) transactions
+    - Show my [debit](transaction_type) transactions
+    - Transactions for [last week](time)
+    - Show me my [last month](time) transactions
+    - Display transactions between [Sep 1st 2023](start_date) and [Oct 15 2023](end_date)
+    - show my trnsactions from [2023 to 2024](time)
+    - shw my transactions from [Aug 1st 2023](start_date) to [Oct 15 2024](end_date)
+    - trxns between [feb](start_date) and [sep 2024](end_date)
+    - show my recent trnsactions
+    - transactions from [jan 1 2023](start_date) to [30.12.2023](end_date)
+    - shw me my [subscription](category) trnxs
+    - show trxns for [2024](time)
+    - show my [last 3](num_transactions) trxn
+    - transactions from [aug 1st 2023](start_date) to [Oct 15 2023](end_date)
+    - show my debit trnxs
+    - give me transactions between [feb](start_date) and [sep 2023](end_date)
+    - show transactions between [22.22.2222](start_date) to [24.24.2424](end_date)
+    - show me my trnxs for [2023](time)
+    - show all turns of [first 15 days of Oct 2024](time)
+    - turns from [sep 1st](start_date) to [Oct 15](end_date)
+- intent: transfer
+  examples: |
+    - I want to transfer funds
+    - Please transfer money to [123456](to_account)
+    - Transfer [500](transfer_amount) to [987654](to_account)
+    - Send [1000](transfer_amount) to [Ali](to_account)
+    - Transfer [3000](transfer_amount) to the payee
+    - Move [200](transfer_amount) to [345678](to_account)
+    - Transfer funds to [987654321](to_account)
+    - I want to send [100](transfer_amount) to my friend
+    - Please transfer [500](transfer_amount) to my other account
+    - Transfer [2000](transfer_amount) to [Usman](to_account)
+    - I want to transfer [100](transfer_amount) to [3819361410](to_account)
+    - I want to transfer [100](transfer_amount) to [abc](to_account)
+    - I want to transfer [100](transfer_amount) to [Mohsin](to_account)
+    - I want to transfer [100](transfer_amount) to [Owais](to_account)
+- intent: provide_otp
+  examples: |
+    - My OTP is [1234](otp)
+    - The code is [5678](otp)
+    - Here's the OTP: [4321](otp)
+    - [9876](otp) is my code
+    - Enter [6543](otp)
+    - [8901](otp)
+    - I got [7050](otp)
+    - It's [4829](otp)
+    - [2233](otp)
+    - [3456](otp), my OTP
+    - Enter [9988](otp) please
+    - The OTP is [1234](otp)
+    - Use this code [8765](otp)
+- regex: category
+  examples: |
+    - (pension payments|account fees|investment sales|credit card payment|wire transfers|bill payment|gift card purchases|loan interest payments|currency exchange|salary deposits|refund|direct debits|overdraft fees|investment purchases|mobile payments|recurring subscriptions|interest payment|foreign transaction fees|ATM withdrawal|tax payments|reversals/cancellations|fund transfer|check withdrawals|money orders|standing orders|loan disbursement|reward redemptions|deposit|utility payments|merchant payment|dividend payments|check deposits|cash deposits|loan payment|gift|payment|bill|subscription|shopping|dummy|IBFT)
+- lookup: category
+  examples: |
+    - pension payments
+    - account fees
+    - investment sales
+    - credit card payment
+    - wire transfers
+    - bill payment
+    - gift card purchases
+    - loan interest payments
+    - currency exchange
+    - salary deposits
+    - refund
+    - direct debits
+    - overdraft fees
+    - investment purchases
+    - mobile payments
+    - recurring subscriptions
+    - interest payment
+    - foreign transaction fees
+    - ATM withdrawal
+    - tax payments
+    - reversals/cancellations
+    - fund transfer
+    - check withdrawals
+    - money orders
+    - standing orders
+    - loan disbursement
+    - reward redemptions
+    - deposit
+    - utility payments
+    - merchant payment
+    - dividend payments
+    - check deposits
+    - cash deposits
+    - loan payment
+    - dummy
+    - gift
+    - payment
+    - bill
+    - subscription
+    - shopping
+    - IBFT
+
+- intent: services
+  examples: |
+    - What services do you provide?
+    - Can you tell me about servces?
+    - Show me your available srvcies
+    - List the services offered by FinBot
+    - Tell me about your servcies
+    - I want to know what servises I can use
+    - What are the banking services I have acces to?
+    - Give me a list of all srvs available
+    - What can FinBot hlp me with?
+    - Explain all the servces you have
+    - Do you have bill paymnt services?
+    - List all features FinBot provides
+    - Show me features of the bot
+    - Do you provide expnditure analysis?
+
+- intent: show_payees
+  examples: |
+    - Show me my payees
+    - Who are my payees?
+    - I want to see my payees
+    - List my payees
+    - Show my registered payees
+    - Tell me the payee details
+    - Can you show my saved payees?
+
+- intent: check_complaints
+  examples: |
+    - Show me my complaints
+    - What complaints have I registered?
+    - List my complaints
+    - What is the status of my complaints?
+    - Can you tell me my complaints?
+    - Show my active complaints
+    - Do I have any complaints registered?
+    - Complaints status
+    - Check the status of my complaints
+    - List all complaints I have made
+
+- intent: register_complaint
+  examples: |
+    - I want to register a complaint
+    - I'd like to make a complaint
+    - I have a complaint to report
+    - Can I file a complaint?
+    - Register a complaint for me
+    - There's an issue I want to report
+    - I need to file a complaint
+    - I would like to raise a complaint
+    - How can I make a complaint?
+
+- intent: add_bill
+  examples: |
+    - I want to add a bill
+    - Add a new bill for payment
+    - Register a new bill for payments
+    - I need to add my [electricity](main_category) bill
+    - Can you help me add my [gas](main_category) bill?
+    - Please add a bill for me
+    - Add a bill to my account
+    - Add my [water](main_category) bill
+    - Add my [IESCO](sub_category) bill
+
+# Intent to pay a bill
+- intent: pay_bill
+  examples: |
+    - I want to pay my [myelectricbill](bill_identifier)
+    - Pay [mygasbill](bill_identifier)
+    - I need to pay the bill for [homeinternet](bill_identifier)
+    - Please pay my [waterbill](bill_identifier)
+    - Pay the bill for [myelectricbill](bill_identifier)
+    - I'd like to pay my [gas](main_category) bill
+    - Can you process the payment for my [electricity](main_category) bill?
+    - I want to make a payment for bill number [12345678](bill_identifier)
+    - Pay bill [12345678](bill_identifier)
+
+- intent: inform
+  examples: |
+    - [Electricity](main_category)
+    - [IESCO](sub_category)
+    - Bill ID [12345678](bill_id)
+    - Nickname [myelectricbill](bill_nickname)
+    - [myelectricbill](bill_identifier)
+    - [12345678](bill_identifier)
+
+- intent: ask_sunday_open_branches
+  examples: |
+    - Which branches are open on sunday?
+    - Show me sunday open branches
+    - Are there any branches open on sunday in Islamabad?
+
+- intent: ask_weekday_open_branches
+  examples: |
+    - Which branches are open on monday?
+    - Show me tuesday open branches
+    - Are there any branches open on wednesday in Islamabad?
+    - Which branches are open on thursday?
+    - Show me branches opened on Friday?
