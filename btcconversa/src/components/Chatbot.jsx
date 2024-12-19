@@ -51,35 +51,41 @@ const Chatbot = ({ toggleSidebar, selectedPrompt }) => {
 					account_number
 				);
 
+				console.log(botResponse);
+
 				// Add the bot's response to the message store
 				if (botResponse && botResponse.length > 0) {
-					console.log(botResponse);
-
 					if (botResponse.length === 1) {
-						if (botResponse[0].custom.type === "transactions") {
-							// if the custom.type.transactions contains a message append it to the chat else show the transactions
-							if (botResponse[0].custom.transactions.message) {
-								addMessage({
-									text: botResponse[0].custom.transactions.message,
-									sender: "bot",
-								});
-							} else {
-								addMessage({
-									text: "Here are your transactions:",
-									sender: "bot",
-								});
+						const response = botResponse[0];
 
-								addMessage({
-									text: (
-										<TransactionTable
-											transactions={botResponse[0].custom.transactions}
-										/>
-									),
-									sender: "bot",
-								});
+						// Check if the response is a custom response
+						if (response.custom) {
+							// Check if the custom response is a transaction response
+							if (response.custom.type === "transactions") {
+								// if the custom.type.transactions contains a message append it to the chat else show the transactions
+								if (response.custom.transactions.message) {
+									addMessage({
+										text: response.custom.transactions.message,
+										sender: "bot",
+									});
+								} else {
+									addMessage({
+										text: "Here are your transactions:",
+										sender: "bot",
+									});
+
+									addMessage({
+										text: (
+											<TransactionTable
+												transactions={response.custom.transactions}
+											/>
+										),
+										sender: "bot",
+									});
+								}
 							}
-						} else {
-							if (botResponse[0].text === "Please provide the bank name.") {
+						} else if (response.text) {
+							if (response.text === "Please provide the bank name.") {
 								addMessage({
 									text: (
 										<BankSelector
@@ -92,6 +98,10 @@ const Chatbot = ({ toggleSidebar, selectedPrompt }) => {
 											]}
 											onSubmit={(selectedBank) => {
 												// Pass the value to the bot as a message from the user
+												addMessage({
+													text: `You selected: ${selectedBank}`,
+													sender: "user",
+												});
 												setInputValue(selectedBank);
 											}}
 										/>
@@ -100,7 +110,7 @@ const Chatbot = ({ toggleSidebar, selectedPrompt }) => {
 								});
 							} else {
 								addMessage({
-									text: botResponse[0].text,
+									text: response.text,
 									sender: "bot",
 								});
 							}
